@@ -1,1 +1,1 @@
-# kurs_pythona_new
+# Repository for training
