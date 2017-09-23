@@ -6,3 +6,4 @@ from fixture.application import Application
 def app(request):
     fixture = Application()
     request.addfinalizer(fixture.destroy)
+    return fixture
