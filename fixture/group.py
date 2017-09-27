@@ -1,4 +1,6 @@
-class GroupHelper:
+from fixture.creator import CreatorHelper
+
+class GroupHelper(CreatorHelper):
 
     def __init__(self, app):
         self.app = app
@@ -28,17 +30,10 @@ class GroupHelper:
         self.change_field_value("group_header", group.header)
         self.change_field_value("group_footer", group.footer)
 
-    def change_field_value(self, field_value, text):
-        wd = self.app.wd
-        if text is not None:
-            wd.find_element_by_name(field_value).click()
-            wd.find_element_by_name(field_value).clear()
-            wd.find_element_by_name(field_value).send_keys(text)
-
     def delete_first_group(self):
         wd = self.app.wd
         self.open_groups_page()
-        self.select_first_group()
+        self.select_first_checkbox()
         # submit group deletion
         wd.find_element_by_name("delete").click()
         self.return_to_groups_page()
@@ -50,7 +45,7 @@ class GroupHelper:
     def modify_first_group(self, new_group_data):
         wd = self.app.wd
         self.open_groups_page()
-        self.select_first_group()
+        self.select_first_checkbox()
         # Click edit group
         wd.find_element_by_name("edit").click()
         self.fill_group_form(new_group_data)
@@ -58,7 +53,7 @@ class GroupHelper:
         wd.find_element_by_name("update").click()
         self.return_to_groups_page()
 
-    def count(self):
+    def count_of_groups(self):
         wd = self.app.wd
         self.open_groups_page()
         return len(wd.find_elements_by_name("selected[]"))
