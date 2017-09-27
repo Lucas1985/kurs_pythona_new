@@ -22,6 +22,7 @@ class ContactHelper(CreatorHelper):
 
     def delete_first_contact(self):
         wd = self.app.wd
+        self.app.open_home_page()
         self.select_first_checkbox()
         # Click delete
         wd.find_element_by_xpath("//*[@value='Usuń']").click()
@@ -30,6 +31,7 @@ class ContactHelper(CreatorHelper):
 
     def modify_first_contact(self, new_contact_data):
         wd = self.app.wd
+        self.app.open_home_page()
         self.select_first_checkbox()
         # Click edit
         wd.find_element_by_xpath("//*[@title='Edytuj']").click()
