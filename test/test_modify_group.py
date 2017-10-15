@@ -4,11 +4,11 @@ from random import randrange
 
 
 def test_modify_group_name(app):
+    group = Group(name="New group name")
     if app.group.count_of_groups() == 0:
-        app.group.create(Group(name="New group to modify"))
+        app.group.create(group)
     old_groups = app.group.get_group_list()
     index = randrange(len(old_groups))
-    group = Group(name="New group name")
     group.id = old_groups[index].id
     app.group.modify_group_by_index(index, group)
     new_groups = app.group.get_group_list()
